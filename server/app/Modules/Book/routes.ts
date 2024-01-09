@@ -3,13 +3,17 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.group(() => {
   Route.get('/', 'BooksController.index')
   Route.get('/:isbn', 'BooksController.show')
-  Route.post('/', 'BooksController.store')
-  Route.put('/:isbn', 'BooksController.update')
-  Route.delete('/:isbn', 'BooksController.destroy')
+  Route.post('/', 'BooksController.store').middleware('role:librarian')
+  Route.put('/:isbn', 'BooksController.update').middleware('role:librarian')
+  Route.delete('/:isbn', 'BooksController.destroy').middleware('role:librarian')
   Route.get('/:isbn/examples', 'BooksController.examples')
-  Route.post('/:isbn/examples', 'BooksController.storeExample')
-  Route.put('/:isbn/examples/:exampleId', 'BooksController.updateExample')
-  Route.delete('/:isbn/examples/:exampleId', 'BooksController.destroyExample')
+  Route.post('/:isbn/examples', 'BooksController.storeExample').middleware('role:librarian')
+  Route.put('/:isbn/examples/:exampleId', 'BooksController.updateExample').middleware(
+    'role:librarian'
+  )
+  Route.delete('/:isbn/examples/:exampleId', 'BooksController.destroyExample').middleware(
+    'role:librarian'
+  )
 })
   .prefix('books')
   .middleware('auth')

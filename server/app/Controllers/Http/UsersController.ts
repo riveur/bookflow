@@ -5,6 +5,8 @@ import UserService from 'App/Modules/User/Service/UserService'
 import StoreUserValidator from 'App/Modules/User/Validator/StoreUserValidator'
 import UpdateUserValidator from 'App/Modules/User/Validator/UpdateUserValidator'
 import TransactionService from 'App/Modules/Transaction/Service/TransactionService'
+import { Role } from 'Contracts/enums'
+import UnauthorizedException from 'App/Exceptions/UnauthorizedException'
 
 @inject()
 export default class UsersController {
@@ -65,7 +67,11 @@ export default class UsersController {
     }
   }
 
-  public async endTransaction({ params, response }: HttpContextContract) {
+  public async endTransaction({ params, response, auth }: HttpContextContract) {
+    if (auth.user!.role !== Role.LIBRARIAN && auth.user!.id !== params.id) {
+      throw new UnauthorizedException()
+    }
+
     try {
       const transaction = await this.transactionService.endTransaction(
         params.transactionId,
