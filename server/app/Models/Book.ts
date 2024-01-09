@@ -1,7 +1,17 @@
 import { DateTime } from 'luxon'
-import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import {
+  BaseModel,
+  BelongsTo,
+  HasMany,
+  ModelQueryBuilderContract,
+  belongsTo,
+  column,
+  hasMany,
+  scope,
+} from '@ioc:Adonis/Lucid/Orm'
 import Author from 'App/Models/Author'
 import Category from 'App/Models/Category'
+import Example from 'App/Models/Example'
 
 export default class Book extends BaseModel {
   @column({ isPrimary: true })
@@ -25,9 +35,18 @@ export default class Book extends BaseModel {
   @belongsTo(() => Category)
   public category: BelongsTo<typeof Category>
 
+  @hasMany(() => Example)
+  public examples: HasMany<typeof Example>
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  public static withExamplesScope = scope((query: ModelQueryBuilderContract<typeof Book>) => {
+    query
+      .withCount('examples', (q) => q.where('available', true).as('available_examples'))
+      .withCount('examples', (q) => q.where('available', false).as('unavailable_examples'))
+  })
 }

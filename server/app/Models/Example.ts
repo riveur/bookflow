@@ -13,6 +13,9 @@ export default class Example extends BaseModel {
   @column()
   public available: boolean
 
+  @column({ columnName: 'book_id' })
+  public bookIsbn: string
+
   @belongsTo(() => Book)
   public book: BelongsTo<typeof Book>
 
