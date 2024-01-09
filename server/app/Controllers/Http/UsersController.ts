@@ -4,10 +4,14 @@ import { inject } from '@adonisjs/core/build/standalone'
 import UserService from 'App/Modules/User/Service/UserService'
 import StoreUserValidator from 'App/Modules/User/Validator/StoreUserValidator'
 import UpdateUserValidator from 'App/Modules/User/Validator/UpdateUserValidator'
+import TransactionService from 'App/Modules/Transaction/Service/TransactionService'
 
 @inject()
 export default class UsersController {
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private transactionService: TransactionService
+  ) {}
 
   public async index() {
     const users = await this.userService.getUsers()
@@ -49,6 +53,27 @@ export default class UsersController {
       return response.noContent()
     } catch {
       return response.notFound({ message: `User "${params.id}" not found` })
+    }
+  }
+
+  public async userTransactions({ params, response }: HttpContextContract) {
+    try {
+      const transactions = await this.transactionService.getUserTransactions(params.id)
+      return response.ok(transactions)
+    } catch (error) {
+      return response.badRequest({ message: error.message })
+    }
+  }
+
+  public async endTransaction({ params, response }: HttpContextContract) {
+    try {
+      const transaction = await this.transactionService.endTransaction(
+        params.transactionId,
+        params.id
+      )
+      return response.ok(transaction)
+    } catch (error) {
+      return response.badRequest({ message: error.message })
     }
   }
 }
