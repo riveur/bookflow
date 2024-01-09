@@ -1,6 +1,6 @@
 import Category from 'App/Models/Category'
 
-export class CategoryService {
+export default class CategoryService {
   public async getCategories() {
     const authors = await Category.all()
     return authors

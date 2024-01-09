@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import { inject } from '@adonisjs/core/build/standalone'
-import { BookService } from 'App/Modules/Book/Service/BookService'
+import BookService from 'App/Modules/Book/Service/BookService'
 import StoreBookValidator from 'App/Modules/Book/Validator/StoreBookValidator'
 import UpdateBookValidator from 'App/Modules/Book/Validator/UpdateBookValidator'
 import StoreBookExampleValidator from 'App/Modules/Book/Validator/StoreBookExampleValidator'

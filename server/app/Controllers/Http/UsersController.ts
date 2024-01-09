@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import { inject } from '@adonisjs/core/build/standalone'
-import { UserService } from 'App/Modules/User/Service/UserService'
+import UserService from 'App/Modules/User/Service/UserService'
 import StoreUserValidator from 'App/Modules/User/Validator/StoreUserValidator'
 import UpdateUserValidator from 'App/Modules/User/Validator/UpdateUserValidator'
 

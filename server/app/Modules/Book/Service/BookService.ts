@@ -6,7 +6,7 @@ import UpdateBookValidator from 'App/Modules/Book/Validator/UpdateBookValidator'
 import StoreBookExampleValidator from 'App/Modules/Book/Validator/StoreBookExampleValidator'
 import UpdateBookExampleValidator from 'App/Modules/Book/Validator/UpdateBookExampleValidator'
 
-export class BookService {
+export default class BookService {
   public async getBooks() {
     const books = await Book.query()
       .preload('author')

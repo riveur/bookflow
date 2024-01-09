@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import { inject } from '@adonisjs/core/build/standalone'
-import { AuthorService } from 'App/Modules/Book/Service/AuthorService'
+import AuthorService from 'App/Modules/Book/Service/AuthorService'
 
 @inject()
 export default class AuthorsController {

@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import { inject } from '@adonisjs/core/build/standalone'
-import { CategoryService } from 'App/Modules/Book/Service/CategoryService'
+import CategoryService from 'App/Modules/Book/Service/CategoryService'
 
 @inject()
 export default class CategoriesController {

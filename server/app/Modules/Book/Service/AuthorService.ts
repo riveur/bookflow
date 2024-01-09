@@ -1,6 +1,6 @@
 import Author from 'App/Models/Author'
 
-export class AuthorService {
+export default class AuthorService {
   public async getAuthors() {
     const authors = await Author.all()
     return authors

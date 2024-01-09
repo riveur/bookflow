@@ -8,7 +8,7 @@ type UserCreateData = StoreUserValidator['schema']['props']
 
 type UserUpdateData = UpdateUserValidator['schema']['props']
 
-export class UserService {
+export default class UserService {
   public async getUsers() {
     const users = await User.all()
     return users
