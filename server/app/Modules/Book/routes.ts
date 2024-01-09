@@ -13,3 +13,17 @@ Route.group(() => {
 })
   .prefix('books')
   .middleware('auth')
+
+Route.group(() => {
+  Route.get('/', 'AuthorsController.index')
+  Route.get('/:id', 'AuthorsController.show')
+})
+  .prefix('authors')
+  .middleware('auth')
+
+Route.group(() => {
+  Route.get('/', 'CategoriesController.index')
+  Route.get('/:id', 'CategoriesController.show')
+})
+  .prefix('categories')
+  .middleware('auth')
