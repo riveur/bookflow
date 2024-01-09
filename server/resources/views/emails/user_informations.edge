@@ -1,0 +1,12 @@
+@layout('emails/layout')
+
+@section('content')
+<p>Bonjour {{ user.fullname }},</p>
+<p>Un compte à votre nom a été créé à votre nom pour accèder à notre plateforme.</p>
+<p>Ci-dessous vous trouverez les informations pour vous connecter à votre compte:</p>
+<ul>
+  <li>Identifiant: {{ user.email }}</li>
+  <li>Mot de passe: {{ tempPassword }}</li>
+</ul>
+<p>Le mot de passe est généré automatiquement, pensez à le changer une fois connectée</p>
+@end

@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, beforeSave, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, beforeSave, column, computed } from '@ioc:Adonis/Lucid/Orm'
 import { Role } from 'Contracts/enums'
 import Hash from '@ioc:Adonis/Core/Hash'
 
@@ -33,6 +33,11 @@ export default class User extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @computed()
+  public get fullname() {
+    return `${this.firstname} ${this.lastname.toUpperCase()}`
+  }
 
   @beforeSave()
   public static async hashPassword(user: User) {
