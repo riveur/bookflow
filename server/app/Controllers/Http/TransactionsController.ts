@@ -19,7 +19,7 @@ export default class TransactionsController {
       const transaction = await this.transactionService.createTransaction(auth.user!.id, data)
       return response.ok(transaction)
     } catch (error) {
-      return response.badRequest({ message: error.message })
+      return response.badRequest({ message: 'Examplaire indisponible' })
     }
   }
 }

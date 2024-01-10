@@ -1,5 +1,17 @@
 {
   "commands": {
+    "check:transactions_status": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "./commands/CheckTransactionsStatus",
+      "commandName": "check:transactions_status",
+      "description": "",
+      "args": [],
+      "aliases": [],
+      "flags": []
+    },
     "dump:rcfile": {
       "settings": {},
       "commandPath": "@adonisjs/core/build/commands/DumpRc",

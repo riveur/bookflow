@@ -20,6 +20,11 @@ export default class TransactionService {
       status: TransactionStatus.EMPRUNTE,
       ...data,
     })
+
+    if (!transaction.id) {
+      throw new Error('Transaction not created')
+    }
+
     return transaction
   }
 
