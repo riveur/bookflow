@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"cd server && pnpm dev\""
+    "dev": "concurrently \"cd server && yarn dev\" \"cd client && yarn dev\""
   },
   "keywords": [],
   "author": "",
