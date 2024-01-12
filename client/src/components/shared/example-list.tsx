@@ -4,6 +4,7 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableFooter,
   TableHead,
   TableHeader,
   TableRow
@@ -11,12 +12,15 @@ import {
 import { ExampleState } from "@/components/shared/example-status";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { AddExampleForm } from "@/components/forms/add-example-form";
 
 interface ExampleListProps {
-  examples: Example[]
+  examples: Example[],
+  isbn: string,
+  showAddForm?: boolean
 }
 
-export const ExampleList: React.FC<ExampleListProps> = ({ examples }) => {
+export const ExampleList: React.FC<ExampleListProps> = ({ examples, isbn, showAddForm = false }) => {
   return (
     <Table>
       <TableHeader>
@@ -47,6 +51,11 @@ export const ExampleList: React.FC<ExampleListProps> = ({ examples }) => {
           </TableRow>
         )}
       </TableBody>
+      {showAddForm && (
+        <TableFooter>
+          <AddExampleForm isbn={isbn} />
+        </TableFooter>
+      )}
     </Table>
   );
 }

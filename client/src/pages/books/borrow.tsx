@@ -57,7 +57,7 @@ export default function BookBorrowPage() {
             </AlertDescription>
           </Alert>
           <h2 className="text-center font-semibold my-4">Examplaires</h2>
-          <ExampleList examples={isSuccessExamples ? examples : []} />
+          <ExampleList isbn={book.isbn} examples={isSuccessExamples ? examples : []} />
         </>
       )}
     </>

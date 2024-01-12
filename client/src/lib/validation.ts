@@ -93,6 +93,11 @@ export const TransactionSchema = z.object({
   user_id: z.string(),
 });
 
+export const CreateExampleSchema = z.object({
+  state: z.enum(['NEUF', 'BON', 'MOYEN', 'MAUVAIS']),
+  available: z.enum(["true", "false"]).transform((value) => value === "true").or(z.boolean()),
+});
+
 export type LoginInput = z.infer<typeof LoginSchema>;
 export type LoginResponse = z.infer<typeof LoginResponseSchema>;
 export type User = z.infer<typeof UserSchema>;
@@ -103,3 +108,4 @@ export type Example = z.infer<typeof ExampleSchema>;
 export type Transaction = z.infer<typeof TransactionSchema>;
 export type CreateBookInput = z.infer<typeof CreateBookSchema>;
 export type BorrowBookInput = z.infer<typeof BorrowBookSchema>;
+export type CreateExampleInput = z.infer<typeof CreateExampleSchema>;

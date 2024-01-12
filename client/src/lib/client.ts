@@ -5,6 +5,7 @@ import {
   BooksSchema,
   CategoriesSchema,
   CreateBookInput,
+  CreateExampleInput,
   ExampleSchema,
   ExamplesSchema,
   LoginResponseSchema,
@@ -79,6 +80,10 @@ export async function deleteBook(isbn: string) {
 
 export async function getBookExample(isbn: string, exampleId: string) {
   return client().get(`books/${isbn}/examples/${exampleId}`).json().then(ExampleSchema.parse);
+}
+
+export async function addBookExample(isbn: string, data: CreateExampleInput) {
+  return client().post(`books/${isbn}/examples`, { json: data }).json().then(ExampleSchema.parse);
 }
 
 export async function addTransaction(data: { example_id: string, expected_return_date: string }) {
