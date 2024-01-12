@@ -3,7 +3,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { logout } from "@/lib/client";
 import { useTokenStore } from "@/stores/useTokenStore";
 import { LogOut, User } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
   const isLoggedIn = useTokenStore(state => state.isLoggedIn);
@@ -21,7 +21,7 @@ export default function Header() {
     <header className="border-b h-16">
       <div className="container flex items-center justify-between h-full">
         <div className="flex items-center">
-          <h1 className="text-2xl font-bold">Bookflow</h1>
+          <Link to="/" className="text-2xl font-bold">Bookflow</Link>
         </div>
         {isLoggedIn() && (
           <DropdownMenu>
