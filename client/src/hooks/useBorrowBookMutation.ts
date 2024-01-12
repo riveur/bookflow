@@ -6,8 +6,7 @@ export const useBorrowBookMutation = (isbn: string) => {
 
   return useMutation({
     mutationFn: addTransaction,
-    onSuccess(data) {
-      queryClient.invalidateQueries(["books", isbn, "examples", data.example_id]);
+    onSuccess() {
       queryClient.invalidateQueries(["books", isbn, "examples"]);
     }
   })
