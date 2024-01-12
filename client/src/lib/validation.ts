@@ -69,14 +69,31 @@ export const ExampleSchema = z.object({
 export const ExamplesSchema = z.array(ExampleSchema);
 
 export const CreateBookSchema = z.object({
-  isbn: z.string(),
-  title: z.string(),
-  cover_url: z.string(),
+  isbn: z.string().min(1, { message: 'ISBN requis' }),
+  title: z.string().min(1, { message: 'Titre requis' }),
+  cover_url: z.string().min(1, { message: 'URL de la couverture requise' }),
   author_id: z.string().optional(),
   category_id: z.string().optional(),
   author: z.string().optional(),
   category: z.string().optional(),
-});
+})
+  .superRefine(({ author, category, author_id, category_id }, ctx) => {
+    if ((!author || !author.length) && !author_id) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Auteur requis',
+        path: ['author_id'],
+      });
+    }
+
+    if ((!category || !category.length) && !category_id) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Catégorie requis',
+        path: ['category_id'],
+      });
+    }
+  });
 
 export const BorrowBookSchema = z.object({
   expected_return_date: z.date(),

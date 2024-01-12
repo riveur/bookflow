@@ -10,8 +10,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useAuthors } from "@/hooks/useAuthors";
 import { useCategories } from "@/hooks/useCategories";
 import { useState } from "react";
-import { Switch } from "../ui/switch";
-import { Label } from "../ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 import { useAddBookMutation } from "@/hooks/useAddBookMutation";
 import { useNavigate } from "react-router-dom";
 
@@ -41,7 +41,6 @@ export function CreateBookForm() {
 
   const handleChangeNewCategory = (value: boolean) => {
     form.resetField(value ? 'category_id' : 'category');
-    console.log(form.getValues());
     setIsNewCategory(value);
   }
 
