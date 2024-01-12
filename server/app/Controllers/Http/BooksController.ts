@@ -67,7 +67,18 @@ export default class BooksController {
       const examples = await this.bookService.getBookExamples(params.isbn)
       return response.ok(examples)
     } catch (error) {
-      return response.notFound({ message: `Book example "${params.isbn}" not found` })
+      return response.notFound({ message: `Book examples "${params.isbn}" not found` })
+    }
+  }
+
+  public async example({ params, response }: HttpContextContract) {
+    try {
+      const example = await this.bookService.getBookExample(params.isbn, params.exampleId)
+      return response.ok(example)
+    } catch (error) {
+      return response.notFound({
+        message: `Book "${params.isbn}" example "${params.exampleId}" not found`,
+      })
     }
   }
 

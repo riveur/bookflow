@@ -7,6 +7,7 @@ Route.group(() => {
   Route.put('/:isbn', 'BooksController.update').middleware('role:librarian')
   Route.delete('/:isbn', 'BooksController.destroy').middleware('role:librarian')
   Route.get('/:isbn/examples', 'BooksController.examples')
+  Route.get('/:isbn/examples/:exampleId', 'BooksController.example')
   Route.post('/:isbn/examples', 'BooksController.storeExample').middleware('role:librarian')
   Route.put('/:isbn/examples/:exampleId', 'BooksController.updateExample').middleware(
     'role:librarian'

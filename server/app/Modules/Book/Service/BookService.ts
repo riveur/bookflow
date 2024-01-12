@@ -5,6 +5,7 @@ import Category from 'App/Models/Category'
 import UpdateBookValidator from 'App/Modules/Book/Validator/UpdateBookValidator'
 import StoreBookExampleValidator from 'App/Modules/Book/Validator/StoreBookExampleValidator'
 import UpdateBookExampleValidator from 'App/Modules/Book/Validator/UpdateBookExampleValidator'
+import Example from 'App/Models/Example'
 
 export default class BookService {
   public async getBooks() {
@@ -77,6 +78,15 @@ export default class BookService {
     const book = await Book.findByOrFail('isbn', isbn)
     const examples = await book.related('examples').query()
     return examples
+  }
+
+  public async getBookExample(isbn: string, exampleId: string) {
+    const example = Example.query()
+      .where('book_id', isbn)
+      .andWhere('id', exampleId)
+      .preload('book', (query) => query.preload('author').preload('category'))
+      .firstOrFail()
+    return example
   }
 
   public async createBookExample(isbn: string, data: StoreBookExampleValidator['schema']['props']) {
