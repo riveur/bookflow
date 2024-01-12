@@ -36,7 +36,7 @@ export default function BookShowPage() {
   return (
     <div className="grid grid-cols-12 gap-4">
       <div className="col-span-12 md:col-span-4 lg:col-span-3">
-        <img className="w-full h-auto" src={book.cover_url} alt={book.title} />
+        <img className="w-full h-auto rounded-lg" src={book.cover_url} alt={book.title} />
       </div>
       <div className="col-span-12 md:col-span-8 lg:col-span-9">
         {roleIs('LIBRARIAN') ? (<UpdateBookForm book={book} />) : (

@@ -13,8 +13,8 @@ export const BookCard: React.FC<BookCardProps> = ({ book }) => {
   const isBookAvailable = Number(book.available_examples) !== 0;
   return (
     <Card className="transition-all hover:shadow-md">
-      <CardHeader className="relative p-0 mb-6 h-[300px]">
-        <img className="rounded-t-lg object-cover object-center overflow-hidden h-full" src={book.cover_url} alt={book.title} />
+      <CardHeader className="relative p-0 mb-6 h-[400px]">
+        <img className="rounded-t-lg object-cover object-top overflow-hidden h-full" src={book.cover_url} alt={book.title} />
         <span className="absolute !m-0 right-0 top-0 p-1 px-2 rounded-bl-lg bg-white text-sm">{book.category.name}</span>
         <span
           className={cn(

@@ -47,7 +47,7 @@ export const AddExampleForm: React.FC<AddExampleFormProps> = ({ isbn }) => {
   return (
     <Form {...form}>
       <TableRow>
-        <TableCell>
+        <TableCell className="p-2">
           <FormField
             control={form.control}
             name="state"
@@ -68,7 +68,7 @@ export const AddExampleForm: React.FC<AddExampleFormProps> = ({ isbn }) => {
             )}
           />
         </TableCell>
-        <TableCell>
+        <TableCell className="p-2">
           <FormField
             control={form.control}
             name="available"
@@ -89,7 +89,7 @@ export const AddExampleForm: React.FC<AddExampleFormProps> = ({ isbn }) => {
             )}
           />
         </TableCell>
-        <TableCell colSpan={3}>
+        <TableCell className="p-2" colSpan={3}>
           <Button variant="outline" onClick={form.handleSubmit(onSubmit)}>Ajouter</Button>
         </TableCell>
       </TableRow>
