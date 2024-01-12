@@ -1,7 +1,7 @@
 import { Book } from "@/lib/validation"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
 import { Link } from "react-router-dom";
 
@@ -15,7 +15,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book }) => {
     <Card className="transition-all hover:shadow-md">
       <CardHeader className="relative p-0 mb-6 h-[300px]">
         <img className="rounded-t-lg object-cover object-center overflow-hidden h-full" src={book.cover_url} alt={book.title} />
-        <span className="absolute !m-0 right-0 top-0 p-1 px-2 rounded-bl-lg rounded-tr-lg bg-white text-sm">{book.category.name}</span>
+        <span className="absolute !m-0 right-0 top-0 p-1 px-2 rounded-bl-lg bg-white text-sm">{book.category.name}</span>
         <span
           className={cn(
             "absolute bottom-2 right-2 flex items-center justify-center font-bold rounded-full w-10 h-10 bg-opacity-80",
@@ -30,7 +30,8 @@ export const BookCard: React.FC<BookCardProps> = ({ book }) => {
         <p className="text-sm">{book.author.name}</p>
       </CardContent>
       <CardFooter>
-        <Button className="w-full" disabled={!isBookAvailable}>{isBookAvailable ? "Emprunter" : "Indisponible"}</Button>
+        {isBookAvailable && <Link className={cn(buttonVariants(), 'w-full')} to={`/books/${book.isbn}/borrow`}>Emprunter</Link>}
+        {!isBookAvailable && <Button className="w-full" disabled>Indisponible</Button>}
       </CardFooter>
     </Card>
   );

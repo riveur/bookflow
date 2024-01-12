@@ -78,6 +78,21 @@ export const CreateBookSchema = z.object({
   category: z.string().optional(),
 });
 
+export const BorrowBookSchema = z.object({
+  expected_return_date: z.date(),
+  example_id: z.string().min(1, { message: 'Example id is required' })
+});
+
+export const TransactionSchema = z.object({
+  id: z.string(),
+  date: dateType,
+  expected_return_date: dateType,
+  real_return_date: z.string().pipe(z.coerce.date()).optional(),
+  status: z.enum(['EMPRUNTE', 'ATTENTE_RETOUR', 'RENDU']),
+  example_id: z.string(),
+  user_id: z.string(),
+});
+
 export type LoginInput = z.infer<typeof LoginSchema>;
 export type LoginResponse = z.infer<typeof LoginResponseSchema>;
 export type User = z.infer<typeof UserSchema>;
@@ -85,4 +100,6 @@ export type Author = z.infer<typeof AuthorSchema>;
 export type Category = z.infer<typeof CategorySchema>;
 export type Book = z.infer<typeof BookSchema>;
 export type Example = z.infer<typeof ExampleSchema>;
+export type Transaction = z.infer<typeof TransactionSchema>;
 export type CreateBookInput = z.infer<typeof CreateBookSchema>;
+export type BorrowBookInput = z.infer<typeof BorrowBookSchema>;

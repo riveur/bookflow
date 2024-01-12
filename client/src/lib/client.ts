@@ -5,8 +5,10 @@ import {
   BooksSchema,
   CategoriesSchema,
   CreateBookInput,
+  ExampleSchema,
   ExamplesSchema,
   LoginResponseSchema,
+  TransactionSchema,
   UserSchema
 } from "@/lib/validation";
 import { useTokenStore } from "@/stores/useTokenStore";
@@ -73,4 +75,12 @@ export async function updateBook(isbn: string, data: CreateBookInput) {
 
 export async function deleteBook(isbn: string) {
   return client().delete(`books/${isbn}`);
+}
+
+export async function getBookExample(isbn: string, exampleId: string) {
+  return client().get(`books/${isbn}/examples/${exampleId}`).json().then(ExampleSchema.parse);
+}
+
+export async function addTransaction(data: { example_id: string, expected_return_date: string }) {
+  return client().post('transactions', { json: data }).json().then(TransactionSchema.parse);
 }

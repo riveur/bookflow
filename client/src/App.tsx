@@ -1,16 +1,17 @@
 import { Navigate, RouterProvider, createBrowserRouter, useLocation } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import DefaultLayout from "@/components/layouts/default";
+import { useTokenStore } from "@/stores/useTokenStore";
+import { useAuth } from "@/hooks/useAuth";
+import { User } from "@/lib/validation";
+import { Toaster } from "@/components/ui/sonner";
 import HomePage from "@/pages/home";
 import LoginPage from "@/pages/auth/login";
 import ErrorPage from "@/pages/error";
-import { useTokenStore } from "@/stores/useTokenStore";
-import BookShowPage from "./pages/books/show";
-import { useAuth } from "./hooks/useAuth";
-import { User } from "./lib/validation";
-import UnauthorizedPage from "./pages/unauthorized";
-import BookAddPage from "./pages/books/add";
-import { Toaster } from "@/components/ui/sonner";
+import UnauthorizedPage from "@/pages/unauthorized";
+import BookShowPage from "@/pages/books/show";
+import BookAddPage from "@/pages/books/add";
+import BookBorrowPage from "@/pages/books/borrow";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,11 @@ const router = createBrowserRouter([
       {
         path: "/books/add",
         element: <RequireAuth role="LIBRARIAN" children={<BookAddPage />} />,
-      }
+      },
+      {
+        path: "/books/:isbn/borrow/:exampleId?",
+        element: <RequireAuth children={<BookBorrowPage />} />,
+      },
     ],
   },
   {

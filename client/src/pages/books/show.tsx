@@ -1,8 +1,6 @@
 import { UpdateBookForm } from "@/components/forms/update-book-form";
-import { ExampleState } from "@/components/shared/example-status";
-import { Button } from "@/components/ui/button";
+import { ExampleList } from "@/components/shared/example-list";
 import { Separator } from "@/components/ui/separator";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useAuth } from "@/hooks/useAuth";
 import { useBook } from "@/hooks/useBook";
 import { useBookExamples } from "@/hooks/useBookExamples";
@@ -55,30 +53,7 @@ export default function BookShowPage() {
         <p>Exaplaires indisponibles - <span className="font-bold">{book.unavailable_examples}</span></p>
         <Separator className="my-4" />
         <h2 className="font-bold text-xl text-center">Examplaires</h2>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Etat</TableHead>
-              <TableHead>Disponibilité</TableHead>
-              <TableHead>Date d'ajout</TableHead>
-              <TableHead>Dernière utilisation</TableHead>
-              <TableHead>Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {isSuccessExamples && examples.map((example) => (
-              <TableRow key={example.id}>
-                <TableCell><ExampleState state={example.state} /></TableCell>
-                <TableCell>{example.available ? "Disponible" : "Indisponible"}</TableCell>
-                <TableCell>{example.created_at}</TableCell>
-                <TableCell>{example.updated_at}</TableCell>
-                <TableCell>
-                  <Button size="sm" disabled={!example.available}>{example.available ? "Emprunter" : "Indisponible"}</Button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <ExampleList examples={isSuccessExamples ? examples : []} />
       </div>
     </div>
   );
