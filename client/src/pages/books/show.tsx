@@ -1,10 +1,10 @@
 import { UpdateBookForm } from "@/components/forms/update-book-form";
 import { ExampleList } from "@/components/shared/example-list";
+import { Loader } from "@/components/shared/loader";
 import { Separator } from "@/components/ui/separator";
 import { useAuth } from "@/hooks/useAuth";
 import { useBook } from "@/hooks/useBook";
 import { useBookExamples } from "@/hooks/useBookExamples";
-import { Loader } from "lucide-react";
 import { useParams } from "react-router-dom"
 
 export default function BookShowPage() {
@@ -14,12 +14,7 @@ export default function BookShowPage() {
   const { data: examples, isSuccess: isSuccessExamples } = useBookExamples(params.isbn!, !!book);
   if (isLoadingBook) {
     return (
-      <div className="h-full flex items-center justify-center">
-        <div className="flex flex-col items-center justify-center gap-2">
-          <p className="font-bold">Chargement...</p>
-          <p><Loader className="h-8 w-8 animate-spin" /></p>
-        </div>
-      </div>
+      <Loader />
     );
   }
 

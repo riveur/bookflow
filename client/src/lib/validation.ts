@@ -1,7 +1,9 @@
 import { z } from "zod";
 import format from "@/lib/date";
 
-const dateType = z.string().transform((date) => format(date));
+const dateType = (dateFormat: string = "PPpp") => {
+  return z.string().transform((date) => format(date, dateFormat))
+};
 
 export const LoginSchema = z.object({
   email: z.string().email(),
@@ -49,8 +51,8 @@ export const BookSchema = z.object({
   category_id: z.string(),
   author: AuthorSchema,
   category: CategorySchema,
-  created_at: dateType,
-  updated_at: dateType,
+  created_at: dateType(),
+  updated_at: dateType(),
   available_examples: z.string(),
   unavailable_examples: z.string(),
 });
@@ -62,8 +64,8 @@ export const ExampleSchema = z.object({
   state: z.enum(['NEUF', 'BON', 'MOYEN', 'MAUVAIS']),
   available: z.boolean(),
   book_isbn: z.string(),
-  created_at: dateType,
-  updated_at: dateType,
+  created_at: dateType(),
+  updated_at: dateType(),
 });
 
 export const ExamplesSchema = z.array(ExampleSchema);
@@ -102,13 +104,22 @@ export const BorrowBookSchema = z.object({
 
 export const TransactionSchema = z.object({
   id: z.string(),
-  date: dateType,
-  expected_return_date: dateType,
-  real_return_date: z.string().pipe(z.coerce.date()).optional(),
+  date: dateType(),
+  expected_return_date: dateType('PP'),
+  real_return_date: dateType().nullable().optional(),
   status: z.enum(['EMPRUNTE', 'ATTENTE_RETOUR', 'RENDU']),
   example_id: z.string(),
   user_id: z.string(),
+  example: ExampleSchema.extend({
+    book: BookSchema.omit({ category: true, author: true, available_examples: true, unavailable_examples: true })
+  }),
 });
+
+export const StoredTransactionSchema = TransactionSchema.omit({
+  example: true,
+});
+
+export const TransactionsSchema = z.array(TransactionSchema);
 
 export const CreateExampleSchema = z.object({
   state: z.enum(['NEUF', 'BON', 'MOYEN', 'MAUVAIS']),

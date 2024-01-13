@@ -12,6 +12,7 @@ import UnauthorizedPage from "@/pages/unauthorized";
 import BookShowPage from "@/pages/books/show";
 import BookAddPage from "@/pages/books/add";
 import BookBorrowPage from "@/pages/books/borrow";
+import BorrowIndexPage from "./pages/borrows";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
         path: "/books/:isbn/borrow/:exampleId?",
         element: <RequireAuth children={<BookBorrowPage />} />,
       },
+      {
+        path: "/borrows",
+        element: <RequireAuth children={<BorrowIndexPage />} />,
+      }
     ],
   },
   {

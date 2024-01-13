@@ -9,7 +9,8 @@ import {
   ExampleSchema,
   ExamplesSchema,
   LoginResponseSchema,
-  TransactionSchema,
+  StoredTransactionSchema,
+  TransactionsSchema,
   UserSchema
 } from "@/lib/validation";
 import { useTokenStore } from "@/stores/useTokenStore";
@@ -87,5 +88,13 @@ export async function addBookExample(isbn: string, data: CreateExampleInput) {
 }
 
 export async function addTransaction(data: { example_id: string, expected_return_date: string }) {
-  return client().post('transactions', { json: data }).json().then(TransactionSchema.parse);
+  return client().post('transactions', { json: data }).json().then(StoredTransactionSchema.parse);
+}
+
+export async function getMyTransactions() {
+  return client().get('transactions').json().then(TransactionsSchema.parse);
+}
+
+export async function endTransaction(userId: string, transactionId: string) {
+  return client().post(`users/${userId}/transactions/${transactionId}/end`).json().then(StoredTransactionSchema.parse);
 }
