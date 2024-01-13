@@ -103,7 +103,7 @@ export function CreateBookForm() {
                   )}
                 />
               </div>
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex flex-col space-y-1.5 w-full">
                   <div className="flex items-center space-x-2">
                     <Switch id="new-author-mode" checked={isNewAuthor} onCheckedChange={handleChangeNewAuthor} />

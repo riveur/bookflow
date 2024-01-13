@@ -99,7 +99,7 @@ export function UpdateBookForm({ book }: UpdateBookFormProps) {
                   )}
                 />
               </div>
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex flex-col space-y-1.5 w-full">
                   <FormField
                     control={form.control}
@@ -147,7 +147,7 @@ export function UpdateBookForm({ book }: UpdateBookFormProps) {
               </div>
             </div>
           </CardContent>
-          <CardFooter className="flex justify-end gap-2">
+          <CardFooter className="flex flex-wrap justify-end gap-2">
             <AlertDeleteBook handleAction={onDeleteBook}>
               <Button variant="destructive">Supprimer</Button>
             </AlertDeleteBook>
