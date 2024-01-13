@@ -49,7 +49,11 @@ export default class UsersController {
     }
   }
 
-  public async destroy({ params, response }: HttpContextContract) {
+  public async destroy({ params, response, auth }: HttpContextContract) {
+    if (auth.user!.id === params.id) {
+      return response.badRequest({ message: `You can't delete yourself` })
+    }
+
     try {
       await this.userService.deleteUser(params.id)
       return response.noContent()
