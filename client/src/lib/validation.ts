@@ -18,16 +18,25 @@ export const LoginResponseSchema = z.object({
 
 export const UserSchema = z.object({
   id: z.string(),
-  firstname: z.string(),
-  lastname: z.string(),
+  firstname: z.string().min(1),
+  lastname: z.string().min(1),
   email: z.string().email(),
-  address: z.string(),
-  number_phone: z.string(),
+  address: z.string().min(1),
+  number_phone: z.string().min(1),
   role: z.enum(['LIBRARIAN', 'USER']),
   created_at: z.string(),
   updated_at: z.string(),
   fullname: z.string(),
 });
+
+export const CreateUserSchema = UserSchema.omit({
+  id: true,
+  created_at: true,
+  updated_at: true,
+  fullname: true,
+});
+
+export const UsersSchema = z.array(UserSchema);
 
 export const AuthorSchema = z.object({
   id: z.string(),
@@ -129,6 +138,7 @@ export const CreateExampleSchema = z.object({
 export type LoginInput = z.infer<typeof LoginSchema>;
 export type LoginResponse = z.infer<typeof LoginResponseSchema>;
 export type User = z.infer<typeof UserSchema>;
+export type CreateUserInput = z.infer<typeof CreateUserSchema>;
 export type Author = z.infer<typeof AuthorSchema>;
 export type Category = z.infer<typeof CategorySchema>;
 export type Book = z.infer<typeof BookSchema>;

@@ -13,6 +13,9 @@ import BookShowPage from "@/pages/books/show";
 import BookAddPage from "@/pages/books/add";
 import BookBorrowPage from "@/pages/books/borrow";
 import BorrowIndexPage from "./pages/borrows";
+import UserIndexPage from "@/pages/users";
+import UserAddPage from "@/pages/users/add";
+import UserShowPage from "@/pages/users/show";
 
 const router = createBrowserRouter([
   {
@@ -39,7 +42,19 @@ const router = createBrowserRouter([
       {
         path: "/borrows",
         element: <RequireAuth children={<BorrowIndexPage />} />,
-      }
+      },
+      {
+        path: "/users",
+        element: <RequireAuth role="LIBRARIAN" children={<UserIndexPage />} />,
+      },
+      {
+        path: "/users/:id",
+        element: <RequireAuth role="LIBRARIAN" children={<UserShowPage />} />,
+      },
+      {
+        path: "/users/add",
+        element: <RequireAuth role="LIBRARIAN" children={<UserAddPage />} />,
+      },
     ],
   },
   {

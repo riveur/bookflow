@@ -6,12 +6,14 @@ import {
   CategoriesSchema,
   CreateBookInput,
   CreateExampleInput,
+  CreateUserInput,
   ExampleSchema,
   ExamplesSchema,
   LoginResponseSchema,
   StoredTransactionSchema,
   TransactionsSchema,
-  UserSchema
+  UserSchema,
+  UsersSchema
 } from "@/lib/validation";
 import { useTokenStore } from "@/stores/useTokenStore";
 
@@ -97,4 +99,24 @@ export async function getMyTransactions() {
 
 export async function endTransaction(userId: string, transactionId: string) {
   return client().post(`users/${userId}/transactions/${transactionId}/end`).json().then(StoredTransactionSchema.parse);
+}
+
+export async function getUsers() {
+  return client().get('users').json().then(UsersSchema.parse);
+}
+
+export async function getUser(userId: string) {
+  return client().get(`users/${userId}`).json().then(UserSchema.parse);
+}
+
+export async function addUser(data: CreateUserInput) {
+  return client().post('users', { json: data }).json().then(UserSchema.parse);
+}
+
+export async function updateUser(userId: string, data: CreateUserInput) {
+  return client().put(`users/${userId}`, { json: data }).json().then(UserSchema.parse);
+}
+
+export async function deleteUser(userId: string) {
+  return client().delete(`users/${userId}`);
 }
