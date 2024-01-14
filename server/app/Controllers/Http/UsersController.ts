@@ -7,12 +7,14 @@ import UpdateUserValidator from 'App/Modules/User/Validator/UpdateUserValidator'
 import TransactionService from 'App/Modules/Transaction/Service/TransactionService'
 import { Role } from 'Contracts/enums'
 import UnauthorizedException from 'App/Exceptions/UnauthorizedException'
+import NotificationService from 'App/Modules/Notification/Service/NotificationService'
 
 @inject()
 export default class UsersController {
   constructor(
     private userService: UserService,
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    private notificationService: NotificationService
   ) {}
 
   public async index({ auth }: HttpContextContract) {
@@ -84,6 +86,32 @@ export default class UsersController {
       return response.ok(transaction)
     } catch (error) {
       return response.badRequest({ message: error.message })
+    }
+  }
+
+  public async notifications({ params, response, auth }: HttpContextContract) {
+    if (auth.user!.id !== params.id) {
+      throw new UnauthorizedException()
+    }
+
+    try {
+      const notifications = await this.notificationService.getUserNotifications(params.id)
+      return response.ok(notifications)
+    } catch {
+      return response.internalServerError({ message: `Enable to get notifications` })
+    }
+  }
+
+  public async readNotification({ params, response, auth }: HttpContextContract) {
+    if (auth.user!.id !== params.id) {
+      throw new UnauthorizedException()
+    }
+
+    try {
+      await this.notificationService.readNotification(params.notificationId)
+      return response.noContent()
+    } catch {
+      return response.internalServerError({ message: `Enable to read notification` })
     }
   }
 }

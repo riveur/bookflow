@@ -8,6 +8,8 @@ Route.group(() => {
   Route.delete('/:id', 'UsersController.destroy').middleware('role:librarian')
   Route.get('/:id/transactions', 'UsersController.userTransactions').middleware('role:librarian')
   Route.post('/:id/transactions/:transactionId/end', 'UsersController.endTransaction')
+  Route.get('/:id/notifications', 'UsersController.notifications')
+  Route.post('/:id/notifications/:notificationId/read', 'UsersController.readNotification')
 })
   .prefix('users')
   .middleware('auth')
