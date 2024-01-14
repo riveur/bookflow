@@ -15,8 +15,8 @@ export default class UsersController {
     private transactionService: TransactionService
   ) {}
 
-  public async index() {
-    const users = await this.userService.getUsers()
+  public async index({ auth }: HttpContextContract) {
+    const users = await this.userService.getUsers([auth.user!.id])
     return users
   }
 

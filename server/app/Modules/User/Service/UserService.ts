@@ -9,8 +9,8 @@ type UserCreateData = StoreUserValidator['schema']['props']
 type UserUpdateData = UpdateUserValidator['schema']['props']
 
 export default class UserService {
-  public async getUsers() {
-    const users = await User.all()
+  public async getUsers(excludeIds: string[] = []) {
+    const users = await User.query().whereNotIn('id', excludeIds)
     return users
   }
 
