@@ -12,7 +12,7 @@ import { useCategories } from "@/hooks/useCategories";
 import { useUpdateBookMutation } from "@/hooks/useUpdateBookMutation";
 import { toast } from "sonner";
 import { useDeleteBookMutation } from "@/hooks/useDeleteBookMutation";
-import { AlertDeleteBook } from "../shared/alert-delete-book";
+import { AlertDeleteBook } from "@/components/shared/alert-delete-book";
 import { useNavigate } from "react-router-dom";
 
 interface UpdateBookFormProps {

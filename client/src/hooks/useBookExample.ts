@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { useAuth } from "./useAuth";
+import { useAuth } from "@/hooks/useAuth";
 import { getBookExample } from "@/lib/client";
 
 interface UseBookExampleParams {

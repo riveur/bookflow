@@ -12,7 +12,7 @@ import UnauthorizedPage from "@/pages/unauthorized";
 import BookShowPage from "@/pages/books/show";
 import BookAddPage from "@/pages/books/add";
 import BookBorrowPage from "@/pages/books/borrow";
-import BorrowIndexPage from "./pages/borrows";
+import BorrowIndexPage from "@/pages/borrows";
 import UserIndexPage from "@/pages/users";
 import UserAddPage from "@/pages/users/add";
 import UserShowPage from "@/pages/users/show";

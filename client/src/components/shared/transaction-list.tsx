@@ -8,8 +8,8 @@ import {
   TableHeader,
   TableRow
 } from "@/components/ui/table";
-import { TransactionStatus } from "./transaction-status";
-import { EndTransactionButton } from "./end-transaction-button";
+import { TransactionStatus } from "@/components/shared/transaction-status";
+import { EndTransactionButton } from "@/components/shared/end-transaction-button";
 
 interface TransactionListProps {
   transactions: Transaction[],

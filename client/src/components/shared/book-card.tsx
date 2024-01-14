@@ -1,8 +1,8 @@
 import { Book } from "@/lib/validation"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "../ui/button";
-import { Skeleton } from "../ui/skeleton";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from "react-router-dom";
 
 interface BookCardProps {

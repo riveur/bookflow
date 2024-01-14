@@ -4,7 +4,7 @@ import * as React from "react";
 import { Button, ButtonProps } from "@/components/ui/button";
 import { toast } from "sonner";
 import { AlertTriangleIcon, LoaderIcon, SendIcon } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface EndTransactionButtonProps extends ButtonProps {
   transaction: Transaction,

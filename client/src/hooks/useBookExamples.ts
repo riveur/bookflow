@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { useAuth } from "./useAuth";
+import { useAuth } from "@/hooks/useAuth";
 import { getBookExamples } from "@/lib/client";
 
 export const useBookExamples = (isbn: string, enabled: boolean) => {
