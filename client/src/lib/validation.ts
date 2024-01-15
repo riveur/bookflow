@@ -135,6 +135,16 @@ export const CreateExampleSchema = z.object({
   available: z.enum(["true", "false"]).transform((value) => value === "true").or(z.boolean()),
 });
 
+export const NotificationSchema = z.object({
+  id: z.string(),
+  message: z.string(),
+  date: dateType(),
+  status: z.enum(['READ', 'UNREAD']),
+  user_id: z.string(),
+});
+
+export const NotificationsSchema = z.array(NotificationSchema);
+
 export type LoginInput = z.infer<typeof LoginSchema>;
 export type LoginResponse = z.infer<typeof LoginResponseSchema>;
 export type User = z.infer<typeof UserSchema>;
@@ -147,3 +157,4 @@ export type Transaction = z.infer<typeof TransactionSchema>;
 export type CreateBookInput = z.infer<typeof CreateBookSchema>;
 export type BorrowBookInput = z.infer<typeof BorrowBookSchema>;
 export type CreateExampleInput = z.infer<typeof CreateExampleSchema>;
+export type Notification = z.infer<typeof NotificationSchema>;

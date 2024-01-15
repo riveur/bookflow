@@ -10,6 +10,7 @@ import {
   ExampleSchema,
   ExamplesSchema,
   LoginResponseSchema,
+  NotificationsSchema,
   StoredTransactionSchema,
   TransactionsSchema,
   UserSchema,
@@ -119,4 +120,12 @@ export async function updateUser(userId: string, data: CreateUserInput) {
 
 export async function deleteUser(userId: string) {
   return client().delete(`users/${userId}`);
+}
+
+export async function getUserNotifications(userId: string) {
+  return client().get(`users/${userId}/notifications`).json().then(NotificationsSchema.parse);
+}
+
+export async function readNotification(userId: string, notificationId: string) {
+  return client().post(`users/${userId}/notifications/${notificationId}/read`);
 }

@@ -1,3 +1,4 @@
+import { NotificationsPopover } from "@/components/shared/notifications-popover";
 import { badgeVariants } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -39,28 +40,31 @@ export default function Header() {
             <NavLink className={({ isActive }) => cn(badgeVariants({ variant: isActive ? "default" : "outline" }), "text-base")} to="/borrows">Emprunts</NavLink>
           </div>
         </div>
-        {(isLoggedIn() && user) && (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button size="icon" variant="ghost"><User className="h-6 w-6" /></Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel className="font-normal">
-                <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none">{user.fullname}</p>
-                  <p className="text-xs leading-none text-muted-foreground">
-                    {user.email}
-                  </p>
-                </div>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={handleLogout}>
-                <LogOut className="h-4 w-4 mr-2" />
-                Se déconnecter
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        )}
+        <div className="flex items-center gap-2">
+          <NotificationsPopover />
+          {(isLoggedIn() && user) && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button size="icon" variant="ghost"><User className="h-6 w-6" /></Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">{user.fullname}</p>
+                    <p className="text-xs leading-none text-muted-foreground">
+                      {user.email}
+                    </p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={handleLogout}>
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Se déconnecter
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
+        </div>
       </div>
     </header>
   );
