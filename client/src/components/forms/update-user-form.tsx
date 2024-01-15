@@ -13,11 +13,7 @@ import { useUpdateUserMutation } from "@/hooks/useUpdateUserMutation";
 import { AlertDeleteUser } from "@/components/shared/alert-delete-user";
 import { useDeleteUserMutation } from "@/hooks/useDeleteUserMutation";
 import { useNavigate } from "react-router-dom";
-
-const roles: Array<{ label: string, value: User['role'] }> = [
-  { label: "Libraire", value: "LIBRARIAN" },
-  { label: "Utilisateur", value: "USER" },
-];
+import { roles } from "@/stores/constants";
 
 interface UpdateUserFormProps {
   user: User,

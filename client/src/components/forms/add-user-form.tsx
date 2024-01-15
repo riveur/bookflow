@@ -1,5 +1,5 @@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { CreateUserInput, CreateUserSchema, User } from "@/lib/validation";
+import { CreateUserInput, CreateUserSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -10,11 +10,7 @@ import { Card, CardContent, CardDescription, CardFooter } from "@/components/ui/
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
-
-const roles: Array<{ label: string, value: User['role'] }> = [
-  { label: "Libraire", value: "LIBRARIAN" },
-  { label: "Utilisateur", value: "USER" },
-];
+import { roles } from "@/stores/constants";
 
 export const AddUserForm = () => {
   const navigate = useNavigate();

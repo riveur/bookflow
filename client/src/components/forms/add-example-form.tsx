@@ -1,28 +1,17 @@
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { TableCell, TableRow } from "@/components/ui/table";
-import { CreateExampleInput, CreateExampleSchema, Example } from "@/lib/validation";
+import { CreateExampleInput, CreateExampleSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useAddBookExampleMutation } from "@/hooks/useAddBookExampleMutation";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { exampleAvailability, exampleStates } from "@/stores/constants";
 
 interface AddExampleFormProps {
   isbn: string
 }
-
-const exampleStates: Array<{ label: string, value: Example['state'] }> = [
-  { label: "Neuf", value: "NEUF" },
-  { label: "Bon", value: "BON" },
-  { label: "Moyen", value: "MOYEN" },
-  { label: "Mauvais", value: "MAUVAIS" }
-];
-
-const exampleAvailability: Array<{ label: string, value: Example['available'] | string }> = [
-  { label: "Disponible", value: true },
-  { label: "Indisponible", value: false }
-];
 
 export const AddExampleForm: React.FC<AddExampleFormProps> = ({ isbn }) => {
   const { mutate: addExample } = useAddBookExampleMutation(isbn);
