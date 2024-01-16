@@ -47,10 +47,10 @@ interface NotificationItemProps {
 }
 
 const NotificationItem: React.FC<NotificationItemProps> = ({ notification }) => {
-  const { mutate: readNotification } = useReadNotificationMutation();
+  const { mutate: readNotification } = useReadNotificationMutation(notification);
   return (
     <li
-      onClick={() => notification.status === 'UNREAD' ? readNotification(notification.id) : undefined}
+      onClick={() => notification.status === 'UNREAD' ? readNotification() : undefined}
       className={cn(buttonVariants({ variant: 'ghost' }), "inline-block whitespace-normal h-auto text-start list-none space-y-1")}
     >
       <span className={cn("text-sm flex items-center gap-2", notification.status === 'UNREAD' && 'font-semibold')}>

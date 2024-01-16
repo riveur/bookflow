@@ -1,15 +1,14 @@
-import { useAuth } from "@/hooks/useAuth";
 import { readNotification } from "@/lib/client";
+import { Notification } from "@/lib/validation";
 import { useMutation, useQueryClient } from "react-query";
 
-export const useReadNotificationMutation = () => {
-  const { data: user } = useAuth();
+export const useReadNotificationMutation = (notification: Notification) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (notificationId: string) => readNotification(user!.id, notificationId),
+    mutationFn: () => readNotification(notification.user_id, notification.id),
     onSuccess: () => {
-      queryClient.invalidateQueries(['notifications', user?.id]);
+      queryClient.invalidateQueries(['notifications', notification.id]);
     }
   });
 }
