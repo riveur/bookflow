@@ -28,7 +28,7 @@ export const AddExampleForm: React.FC<AddExampleFormProps> = ({ isbn }) => {
     addExample(data, {
       onSuccess() {
         form.reset();
-        toast("Examplaire ajouté !");
+        toast("Exemplaire ajouté !");
       }
     });
   }

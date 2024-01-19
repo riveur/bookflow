@@ -85,7 +85,7 @@ export const BorrowBookForm: React.FC<BorrowBookFormProps> = ({ example, classNa
                           />
                         </PopoverContent>
                       </Popover>
-                      <FormDescription>Renseignez la date à laquelle vous comptez rendre l'examplaire.</FormDescription>
+                      <FormDescription>Renseignez la date à laquelle vous comptez rendre l'exemplaire.</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}

@@ -47,7 +47,7 @@ export const ExampleList: React.FC<ExampleListProps> = ({ examples, isbn, showAd
         ))}
         {examples.length === 0 && (
           <TableRow>
-            <TableCell colSpan={5} className="text-center">Aucun examplaire</TableCell>
+            <TableCell colSpan={5} className="text-center">Aucun exemplaire</TableCell>
           </TableRow>
         )}
       </TableBody>

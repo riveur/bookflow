@@ -47,7 +47,7 @@ export default function BookShowPage() {
         <p>Exaplaires disponibles - <span className="font-bold">{book.available_examples}</span></p>
         <p>Exaplaires indisponibles - <span className="font-bold">{book.unavailable_examples}</span></p>
         <Separator className="my-4" />
-        <h2 className="font-bold text-xl text-center">Examplaires</h2>
+        <h2 className="font-bold text-xl text-center">Exemplaires</h2>
         <ExampleList isbn={book.isbn} showAddForm={roleIs('LIBRARIAN')} examples={isSuccessExamples ? examples : []} />
       </div>
     </div>

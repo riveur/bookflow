@@ -21,7 +21,7 @@ CREATE OR REPLACE FUNCTION check_example_availability() RETURNS trigger AS $$
 		IF target_example.available = false THEN
 			error_message := FORMAT(E'Le livre %s que vous avez essayer d\'emprunter n\'est pas disponible', target_example.book_title);
 			CALL send_notification_to_user(NEW.user_id, error_message);
-			RAISE NOTICE 'Examplaire indisponible';
+			RAISE NOTICE 'Exemplaire indisponible';
 			RETURN NULL;
 		END IF;
 		
@@ -29,7 +29,7 @@ CREATE OR REPLACE FUNCTION check_example_availability() RETURNS trigger AS $$
 	END;
 $$ LANGUAGE plpgsql;
 
--- Avant d'insérer la transaction on vérifie si l'examplaire est disponible
+-- Avant d'insérer la transaction on vérifie si l'exemplaire est disponible
 CREATE TRIGGER trigger_before_insert_transaction
 BEFORE INSERT
 ON transactions
@@ -47,7 +47,7 @@ CREATE OR REPLACE FUNCTION change_example_availability() RETURNS trigger AS $$
 	END;
 $$ LANGUAGE plpgsql;
 
--- Après l'insertion ou la mise à jour d'une transaction on change la disponibilité de l'examplaire
+-- Après l'insertion ou la mise à jour d'une transaction on change la disponibilité de l'exemplaire
 CREATE TRIGGER trigger_after_insert_or_update_transaction
 AFTER INSERT OR UPDATE
 ON transactions

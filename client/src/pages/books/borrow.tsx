@@ -37,7 +37,7 @@ export default function BookBorrowPage() {
       </div>
       {params.exampleId && example ? (
         <>
-          <p className="text-center mb-4">Vous avez choisi l'examplaire: <span className="font-bold">{example.id}</span></p>
+          <p className="text-center mb-4">Vous avez choisi l'exemplaire: <span className="font-bold">{example.id}</span></p>
           <div className="flex items-center justify-center">
             <div className="flex gap-4 mb-4">
               <p>Etat: <ExampleState state={example.state} /></p>
@@ -53,10 +53,10 @@ export default function BookBorrowPage() {
           <Alert variant="warning">
             <AlertTriangleIcon className="h-4 w-4" />
             <AlertDescription>
-              Pour emprunter un livre vous devez d'abord choisir un examplaire.
+              Pour emprunter un livre vous devez d'abord choisir un exemplaire.
             </AlertDescription>
           </Alert>
-          <h2 className="text-center font-semibold my-4">Examplaires</h2>
+          <h2 className="text-center font-semibold my-4">Exemplaires</h2>
           <ExampleList isbn={book.isbn} examples={isSuccessExamples ? examples : []} />
         </>
       )}

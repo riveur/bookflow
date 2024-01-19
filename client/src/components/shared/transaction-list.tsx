@@ -21,7 +21,7 @@ export const TransactionList: React.FC<TransactionListProps> = ({ transactions }
       <TableHeader>
         <TableRow>
           <TableHead>Livre emprunté</TableHead>
-          <TableHead>Examplaire</TableHead>
+          <TableHead>Exemplaire</TableHead>
           <TableHead>Date d'emprunt</TableHead>
           <TableHead>Etat</TableHead>
           <TableHead>Actions</TableHead>
