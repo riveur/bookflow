@@ -65,7 +65,7 @@ const router = createBrowserRouter([
     path: "/unauthorized",
     element: <UnauthorizedPage />,
   },
-]);
+], { basename: '/bookflow'});
 
 export default function App() {
   const queryClient = new QueryClient();
